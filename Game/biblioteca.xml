@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Biblioteca Ubicación="Costa Rica" cantidad="2">
-<!--Comentario de la biblioteca-->
-<libro paginas="100">
-<titulo>Libro acción 1</titulo>
-<autor>Autor ACTION</autor>
-</libro>
-</Biblioteca>
