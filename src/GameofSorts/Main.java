@@ -1,9 +1,14 @@
 package GameofSorts;
 
 import javax.swing.JFrame;
-
+/**
+ *
+ * @author Bryan
+ */
 public class Main extends JFrame {
-
+    /**
+     * Constructor de la ventana de juego
+     */
     public Main(){
         add(new Ventana());
         setTitle("Game of Sorts");
