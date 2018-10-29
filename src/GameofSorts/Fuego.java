@@ -6,14 +6,19 @@ import java.awt.Rectangle;
 
 /**
  *
- * @author 
+ * @author Bryan
  */
 public class Fuego {
     protected Image image;
     protected int x,y;
-    private final int Velocidad = 7;
+    private final int Velocidad = 5;
     private boolean visible;
 
+    /**
+     * Constructor de los proyectiles de fuego
+     * @param x - Posición en x
+     * @param y - Posición en y
+     */
     public Fuego(int x, int y){
         ImageIcon ii = new ImageIcon(this.getClass().getResource("images/fuego.gif"));
         image = ii.getImage();
@@ -22,6 +27,7 @@ public class Fuego {
         this.y = y;
     }
 
+    //Métodos setters y getters
     public int getX(){
         return x;
     }
@@ -33,23 +39,33 @@ public class Fuego {
     public Image getImage(){
         return image;
     }
-
-
-    public Rectangle getLimites(){
-        return new Rectangle(x, y, image.getWidth(null), image.getHeight(null));
-    }
-
-    public boolean isVisible(){
-        return visible;
-    }
-
+    
     public void setVisible(boolean visible){
         this.visible = visible;
     }
-
+    
+    /**
+     * Dimenciones de la imagen (Hitbox)
+     * @return 
+     */
+    public Rectangle getLimites(){
+        return new Rectangle(x, y, image.getWidth(null), image.getHeight(null));
+    }
+    
+    /**
+     * Visualizar el proyectil  
+     * @return 
+     */
+    public boolean isVisible(){
+        return visible;
+    }
+    
+    /**
+     * Movimiento del proyectil 
+     */
     public void update(){
         x += Velocidad;
-        if(x<0)
+        if(x<10)
             visible = false;
     }
 }
