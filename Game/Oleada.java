@@ -11,6 +11,9 @@ public class Oleada {
 
     private Dragon comandante;
 
+    /**
+     * Constructor Oleada.
+     */
     public Oleada(){
         this.comandante = null;
     }
@@ -24,21 +27,25 @@ public class Oleada {
     }
 
 
-    public void SelectionSortEdad(){
-
-
+    public boolean isLista(){
+        if (this.comandante.getHeight() == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
+    public void SelectionSortEdad(){
+
+    }
 
     public void InsertionSortVelocidad(){
 
     }
 
-
     public void QuickSortEdad(){
 
     }
-
 
     public void balancearEdades(){
 

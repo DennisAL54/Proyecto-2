@@ -3,7 +3,7 @@ package Game;
 public class Main {
 
     public static int nivel = 1;
-    public static int dragones = 100;
+    public static int cantDragones = 10;
 
     public static void main(String Args[]){
 
@@ -15,8 +15,22 @@ public class Main {
 
         oleada.print();
 
+
     }
 
+    public static int getNivel() {
+        return nivel;
+    }
 
+    public static void setNivel(int nivel) {
+        Main.nivel = nivel;
+    }
 
+    public static int getCantDragones() {
+        return cantDragones;
+    }
+
+    public static void setDragones(int cantDragones) {
+        Main.cantDragones = cantDragones;
+    }
 }

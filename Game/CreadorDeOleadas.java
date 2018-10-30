@@ -5,35 +5,12 @@ package Game;
  *
  * @author Rubén Salas
  * @since 18/10/18
- * @version 1.0
+ * @version 1.1
  */
 public class CreadorDeOleadas {
 
     //Lista donde se guardarán los Dragones (Oleada)
     private Lista oleada = new Lista();
-
-    /**
-     * Verifica cuantos dragones quedan por salir en el nivel para crear la oleada dependiendo de la cantidad restante.
-     * @return - cantidad de dragones para la siguiente oleada
-     */
-    private int checkDragonesTotales(){
-        //Total de dragones restantes
-        int total = Main.dragones;
-
-        //Cuando queden más de 8 dragones
-         if (total > 8){
-             //Se crearan oleadas de máximo 8 dragones
-             return 8;
-         }
-         //Cuando hayan menos de 8 dragones
-         else if ( total <=8 && total > 0) {
-             //Se creará la ultima oleada con los dragones restantes antes de pasar de nivel.
-             return total;
-         } else {
-             return 0;
-         }
-
-    }
 
 
     /**
@@ -42,23 +19,27 @@ public class CreadorDeOleadas {
      */
     public Lista newOleada(){
         //Recibe la cantidad de dragones que habrán en la oleada
-        int cantidad = checkDragonesTotales();
-
-
-        //*******************************//
-        //Agregar posX y posY al crearlos//
-        //*******************************//
-
+        int cantidad = Main.getCantDragones();
 
         //Son aregados la cantidad de Dragones anteriormente dada a una lista enlazada.
-        for (int i = 0; i <= cantidad; i++){
-            //Cada dragon es creado co atributos aleatorios por sus respectivos métodos.
+        for (int i = 1; i <= cantidad; i++){
+            //Cada dragon es creado con atributos aleatorios por sus respectivos métodos.
             Dragon dragon = new Dragon(generateName(), generateSpeed(), generateAge(), generateResistence(), generateClass());
+            //Se agregan las coordenadas de cada dragon
+            dragon.generateCoords(i);
             //Se agrega a la lista.
             oleada.add(dragon);
         }
         return oleada;
     }
+
+
+
+
+
+
+
+
 
     /**
      * Genera un nombre al Dragon aleatoriamente sin repetir en la misma Oleada.
@@ -198,5 +179,7 @@ public class CreadorDeOleadas {
     private void generateFamily(){
         //FALTA
     }
+
+
 
 }

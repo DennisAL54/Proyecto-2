@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
  *
  * @author Rubén Salas
  * @since 16/10/18
- * @version 1.0
+ * @version 1.1
  */
 public class Dragon {
 
@@ -16,15 +16,19 @@ public class Dragon {
     private int age;
     private int resistance;
     private String classType;
-    private ImageView image;
-    int x;
-    int y;
-
-    Dragon next;
-    Dragon prev;
     private Dragon padre;
-    private Dragon hijoIzq;
-    private Dragon hijoDer;
+    private ImageView image;
+    private double x;
+    private double y;
+
+    //Atributos en lista
+    private Dragon next;
+    private Dragon prev;
+
+    //Atributos en árbol
+    private int height;
+    private Dragon left;
+    private Dragon right;
 
     /**
      * Constructor de Dragon
@@ -84,14 +88,6 @@ public class Dragon {
         this.classType = classType;
     }
 
-    public ImageView getImage() {
-        return image;
-    }
-
-    public void setImage(ImageView image) {
-        this.image = image;
-    }
-
     public Dragon getPadre() {
         return padre;
     }
@@ -100,37 +96,32 @@ public class Dragon {
         this.padre = padre;
     }
 
-    public Dragon getHijoIzq() {
-        return hijoIzq;
+    public ImageView getImage() {
+        return image;
     }
 
-    public void setHijoIzq(Dragon hijoIzq) {
-        this.hijoIzq = hijoIzq;
+    public void setImage(ImageView image) {
+        this.image = image;
     }
 
-    public Dragon getHijoDer() {
-        return hijoDer;
-    }
-
-    public void setHijoDer(Dragon hijoDer) {
-        this.hijoDer = hijoDer;
-    }
-
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(double x) {
         this.x = x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
-    public void setY(int y) {
+    public void setY(double y) {
         this.y = y;
     }
+
+
+    //Getters & Setters al estar en lista
 
     public Dragon getNext() {
         return next;
@@ -148,17 +139,71 @@ public class Dragon {
         this.prev = prev;
     }
 
-    public void disparar(){
 
+    //Getters & Setters al estar en árbol
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public Dragon getHijoIzq() {
+        return left;
+    }
+
+    public void setHijoIzq(Dragon left) {
+        this.left = left;
+    }
+
+    public Dragon getHijoDer() {
+        return right;
+    }
+
+    public void setHijoDer(Dragon right) {
+        this.right = right;
     }
 
 
-    public void avanzar(){
-
-    }
 
 
-    public void verificarEsquivado(){
+    public void generateCoords(int i){
+        double x = 900;
+        double y;
+
+        if (i == 1) {
+            y = 285.0;
+            x = x + 80*0;
+        } else if (i <= 3) { //2-3
+            y = 245 + (80*(i-2));
+            x = x + 80*1;
+        } else if (i <= 6) { //4-5-6
+            y = 205 + (80*(i-4));
+            x = x + 80*2;
+        } else if (i <= 10) { //7-8-9-10
+            y = 165 + (80*(i-7));
+            x = x + 80*3;
+        } else if (i <= 15) { //11-12-13-14-15
+            y = 125 + (80*(i-11));
+            x = x + 80*4;
+        } else if (i <= 21) { //16-17-18-19-20-21
+            y = 85 + (80*(i-16));
+            x = x + 80*5;
+        } else if (i <= 28) { //22-23-24-25-26-27-28
+            y = 45 + (80*(i-22));
+            x = x + 80*6;
+        } else { //29-30-31-32-33-34-35-36 - - - >
+            i = ((i-29) + 8);
+            y = 5 + (80 * (i%8));
+            x = (x + (80*7)) + ((i-8)/8)*80;
+        }
+
+        this.setY(y);
+        this.setX(x);
+
+
 
     }
 

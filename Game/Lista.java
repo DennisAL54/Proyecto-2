@@ -4,7 +4,7 @@ package Game;
  * Representacion de una Lista
  *
  * @author Rubén Salas
- * @version 1.0
+ * @version 1.1
  * @since 17/10/18
  *
  */
@@ -21,7 +21,7 @@ public class Lista {
         this.size = 0;
     }
 
-    //Métodos setters y getters
+    //Getters & Setters
 
     public Dragon getHead() {
         return head;
@@ -113,6 +113,7 @@ public class Lista {
             System.out.println("Edad: " + temp.getAge());
             System.out.println("Resistencia: " + temp.getResistance());
             System.out.println("Clase: " + temp.getClassType());
+            System.out.println("Coordinadas: (" + temp.getX() + "," + temp.getY() + ")");
             System.out.println("");
 
             temp = temp.getNext();
@@ -121,15 +122,15 @@ public class Lista {
 
 
     /**
-     * Muestra la lista en la interfaz.
+     * Muestra la lista de dragones en la interfaz.
      */
     /**
-    public void show() throws JSONException {
+    public void show() {
         Segmento temp = this.getHead();
 
         while (temp != null){
 
-            drawFromSegment(temp);
+            temp.show();
 
             temp = temp.getNext();
         }
