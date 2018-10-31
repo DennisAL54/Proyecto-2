@@ -17,6 +17,8 @@ public class Dragon {
     private int resistance;
     private String classType;
     private Dragon padre;
+    private Dragon hijo1;
+    private Dragon hijo2;
     private ImageView image;
     private double x;
     private double y;
@@ -96,6 +98,22 @@ public class Dragon {
         this.padre = padre;
     }
 
+    public Dragon getHijo1() {
+        return hijo1;
+    }
+
+    public void setHijo1(Dragon hijo1) {
+        this.hijo1 = hijo1;
+    }
+
+    public Dragon getHijo2() {
+        return hijo2;
+    }
+
+    public void setHijo2(Dragon hijo2) {
+        this.hijo2 = hijo2;
+    }
+
     public ImageView getImage() {
         return image;
     }
@@ -150,19 +168,19 @@ public class Dragon {
         this.height = height;
     }
 
-    public Dragon getHijoIzq() {
+    public Dragon getLeft() {
         return left;
     }
 
-    public void setHijoIzq(Dragon left) {
+    public void setLeft(Dragon left) {
         this.left = left;
     }
 
-    public Dragon getHijoDer() {
+    public Dragon getRight() {
         return right;
     }
 
-    public void setHijoDer(Dragon right) {
+    public void setRight(Dragon right) {
         this.right = right;
     }
 
