@@ -297,6 +297,68 @@ public class CreadorDeOleadas {
         }
         return oleada;
     }
+    
+    
+    public Lista selectionSort(Lista lista){
+        Lista Lord = new Lista();
+        for(Dragon nodo1 = lista.getHead(); nodo1 != null; nodo1 = nodo1.getNext()) {
+            Dragon min = nodo1;
+            for(Dragon nodo2 = nodo1; nodo2 != null; nodo2 = nodo2.getNext()){
+                if(min.getAge() > nodo2.getAge()){
+                    min = nodo2;
+                }
+
+            }
+            Dragon temp = new Dragon(nodo1.getName(),nodo1.getRechargeSpeed(),nodo1.getAge(),nodo1.getResistance(),nodo1.getClassType());
+            nodo1 = min;
+            min = temp;
+            Lord.add(min);
+            /*nodo1.setAge(min.getAge());
+            nodo1.setName(min.getName());
+            nodo1.setRechargeSpeed(min.getRechargeSpeed());
+            nodo1.setResistance(min.getResistance());
+            nodo1.setClassType(min.getClassType());
+            min.setAge(temp.getAge());
+            min.setAge(temp.getAge());
+            min.setName(temp.getName());
+            min.setRechargeSpeed(temp.getRechargeSpeed());
+            min.setResistance(temp.getResistance());
+            min.setClassType(temp.getClassType());*/
+            Lord.add(min);
+        }
+        return Lord;
+    }
+    
+    
+    public Dragon InSort(Dragon head){
+        Lista List = new Lista();
+        if(head == null){
+            return null;
+        }
+        Dragon dummy = new Dragon("w",0,0,0,"r");
+        Dragon prev = dummy;
+        Dragon temp = null;
+        Dragon curr = head;
+        while(curr != null){
+            temp = head.getNext();
+            while(prev.getNext() != null && prev.getNext().getRechargeSpeed() > curr.getRechargeSpeed()){
+                prev = prev.getNext();
+            }
+            curr.setNext(prev.getNext());
+            prev.setNext(curr);
+            curr = temp;
+            prev = dummy;
+            
+        }
+        List.add(dummy.getNext());
+        
+        return dummy.getNext();
+       
+    }
+    
+    public Lista quickSort(Lista lista){
+        
+    }
 
 
 }
