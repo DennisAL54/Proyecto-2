@@ -77,13 +77,13 @@ public class CreadorDeOleadas {
         //Flag para revisar si se repite
         boolean doubled = false;
 
-        //Lista con nombres predefinidos para los Dragones
-        String[] names = {"Andres", "Antonio", "Bruno", "Bryan", "Carlos", "Cesar", "Daniel", "David",
-                 "Dennis", "Emilio", "Esteban", "Fabian", "Gabriel", "Jose", "Luis", "Manuel", "Mario",
-                 "Nicolas", "Oscar", "Ruben", "Santiago"};
+        //Lista con nombres predefinidos para los Dragones (30)
+        String[] names = {"Andres", "Antonio", "Bruno", "Bryan", "Carlos", "Cesar", "Daniel", "David", "Dennis", "Diego",
+                "Emilio", "Esteban", "Fabian", "Felipe", "Francisco", "Gabriel", "Gustavo", "Isaac", "Jose", "Lucas",
+                "Luis", "Manuel", "Marco", "Mario", "Nicolas", "Oscar", "Pablo", "Ruben", "Santiago", "Sergio"};
 
         //Indice creado aleatoriamente
-        int indice = (int) Math.floor(Math.random()*(15-0+1)+0);
+        int indice = (int) Math.floor(Math.random()*(29-0+1)+0);
 
         //Nombre tomado de la lista con el indice previamete definido
         String name = names[indice];
@@ -103,7 +103,7 @@ public class CreadorDeOleadas {
         }
 
         //Si está repetido
-        /*if (doubled){
+        if (doubled){
             //Se vuelve a llamar la función para que se accese un nuevo nombre
             return generateName();
         }
@@ -111,8 +111,8 @@ public class CreadorDeOleadas {
         else {
             //Devuelve el nombre accesado
             return name;
-        }*/
-        return name;
+        }
+        //return name;
     }
 
     /**
@@ -235,6 +235,18 @@ public class CreadorDeOleadas {
         }
         //Retorna el arbol
         return tree;
+    }
+
+    public BinaryTree turnToBinaryTree(Lista oleada) {
+        BinaryTree binaryTree = new BinaryTree();
+        binaryTree.setRoot(oleada.getHead());
+        Dragon temp = oleada.getHead();
+        while(temp != null){
+            temp.setLeft(temp.getHijo1());
+            temp.setRight(temp.getHijo2());
+            temp = temp.getNext();
+        }
+        return binaryTree;
     }
 
 

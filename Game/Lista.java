@@ -113,30 +113,14 @@ public class Lista {
             System.out.println("Edad: " + temp.getAge());
             System.out.println("Resistencia: " + temp.getResistance());
             System.out.println("Clase: " + temp.getClassType());
+            if (temp.getPadre() != null)
+                System.out.println("Padre: " + temp.getPadre().getName());
             System.out.println("Coordinadas: (" + temp.getX() + "," + temp.getY() + ")");
             System.out.println("");
 
             temp = temp.getNext();
         }
     }
-
-
-    /**
-     * Muestra la lista de dragones en la interfaz.
-     */
-    /**
-    public void show() {
-        Segmento temp = this.getHead();
-
-        while (temp != null){
-
-            temp.show();
-
-            temp = temp.getNext();
-        }
-    }
-     **/
-
 
 
 }
