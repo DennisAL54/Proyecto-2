@@ -1,18 +1,16 @@
 package Game;
 
-import static Game.Main.creador;
-
 /**
  * Representa un árbol AVL.
  *
  * @author Rubén Salas
  * @since 29/10/18
- * @version 1.0
+ * @version 1.2
  */
 public class AVLTree {
 
-
     private Dragon root;
+
 
     /**
      * Constructor de AVLTree.
@@ -20,6 +18,7 @@ public class AVLTree {
     public AVLTree(){
         this.root = null;
     }
+
 
     //Getters & Setters
     public Dragon getRoot() {
@@ -29,6 +28,7 @@ public class AVLTree {
     public void setRoot(Dragon root) {
         this.root = root;
     }
+
 
     /**
      *
@@ -107,68 +107,91 @@ public class AVLTree {
         return height(dragon.getLeft()) - height(dragon.getRight());
     }
 
+
+    /**
+     *
+     * @param dragon
+     * @return
+     */
     public Dragon insert(Dragon dragon){
         if (this.getRoot() == null){
             this.setRoot(dragon);
             return dragon;
+
         } else {
             return insertAux(this.getRoot(), dragon);
         }
     }
 
-
-    private Dragon insertAux(Dragon root, Dragon dragon) {
+    /**
+     *
+     * @param node
+     * @param dragon
+     * @return
+     */
+    public Dragon insertAux(Dragon node, Dragon dragon) {
 
         int key = dragon.getAge();
 
-        if (root == null)
+        /* 1. Perform the normal BST insertion */
+        if (node == null) {
+            //System.out.println("Added: " + dragon.getName());
             return (dragon);
 
-        if (key < root.getAge())
-            root.setLeft(insertAux(root.getLeft(),dragon));
-        else if (key > root.getAge())
-            root.setRight(insertAux(root.getRight(),dragon));
+        }
+        if (key < node.getAge())
+            node.setLeft(insertAux(node.getLeft(), dragon));
+        else if (key > node.getAge())
+            node.setRight(insertAux(node.getRight(), dragon));
         else // Duplicate keys not allowed
-            return root;
+            return node;
 
         /* 2. Update height of this ancestor BNode */
-        root.setHeight(1 + max(height(root.getLeft()), height(root.getRight())));
+        node.setHeight(1 + max(height(node.getLeft()), height(node.getRight())));
 
 		/* 3. Get the balance factor of this ancestor
 			BNode to check whether this BNode became
 			unbalanced */
-        int balance = getBalance(root);
+        int balance = getBalance(node);
 
         // If this BNode becomes unbalanced, then there
         // are 4 cases Left Left Case
-        if (balance > 1 && key < root.getLeft().getAge())
-            return rightRotate(root);
+        if (balance > 1 && key < node.getLeft().getAge()) {
+            return rightRotate(node);
+        }
 
-        // Right Right Case
-        if (balance < -1 && key > root.getRight().getAge())
-            return leftRotate(root);
+        // Caso Right Right
+        if (balance < -1 && key > node.getRight().getAge()) {
+            return leftRotate(node);
+        }
 
-        // Left Right Case
-        if (balance > 1 && key > root.getLeft().getAge()) {
-            root.setLeft(leftRotate(root.getLeft()));
-            return rightRotate(root);
+        // Caso Left Right
+        if (balance > 1 && key > node.getLeft().getAge()) {
+            node.setLeft(leftRotate(node.getLeft()));
+            return rightRotate(node);
         }
 
         // Right Left Case
-        if (balance < -1 && key < root.getRight().getAge()) {
-            root.setRight(rightRotate(root.getRight()));
-            return leftRotate(root);
+        if (balance < -1 && key < node.getRight().getAge()) {
+            node.setRight(rightRotate(node.getRight()));
+            return leftRotate(node);
         }
 
         /* return the (unchanged) BNode pointer */
-        return root;
+        return node;
     }
 
-
+    /**
+     * Recorre el arbol y lo imprime en Preorden
+     */
     public void preOrder() {
-        preOrderAux(this.getRoot());
+        this.preOrderAux(this.getRoot());
     }
 
+    /**
+     * Auxiliar de preOrder
+     * @param node - root
+     */
     private void preOrderAux(Dragon node) {
         if (node != null) {
             System.out.print(node.getAge() + " ");

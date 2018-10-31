@@ -7,17 +7,19 @@ public class Main {
 
     public static CreadorDeOleadas creador = new CreadorDeOleadas();
 
+    public static Lista oleada;
+
     public static void main(String Args[]){
 
 
         System.out.println("\nTest CreadorDeOleadas:\n");
         System.out.println("Test Lista Dragones Aleatorios:\n");
 
-        Lista oleada = creador.newOleada();
+        oleada = creador.newOleada();
 
         oleada.print();
 
-        System.out.println(" \n \n");
+        System.out.println(" \n");
 
         System.out.println("Test AVLTree:\n");
 
@@ -26,7 +28,7 @@ public class Main {
         arbol.preOrder();
 
 
-        /**
+        /*
         Lista l = new Lista();
 
         Dragon d1 = new Dragon("",0,1,0,"");

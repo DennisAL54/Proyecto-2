@@ -78,8 +78,9 @@ public class CreadorDeOleadas {
         boolean doubled = false;
 
         //Lista con nombres predefinidos para los Dragones
-        String[] names = {"Andres", "Antonio", "Bruno", "Bryan", "Carlos", "David", "Dennis",
-                 "Esteban", "Fabian", "Gabriel", "Jose", "Luis", "Mario", "Oscar", "Ruben", "Santiago"};
+        String[] names = {"Andres", "Antonio", "Bruno", "Bryan", "Carlos", "Cesar", "Daniel", "David",
+                 "Dennis", "Emilio", "Esteban", "Fabian", "Gabriel", "Jose", "Luis", "Manuel", "Mario",
+                 "Nicolas", "Oscar", "Ruben", "Santiago"};
 
         //Indice creado aleatoriamente
         int indice = (int) Math.floor(Math.random()*(15-0+1)+0);
@@ -102,7 +103,7 @@ public class CreadorDeOleadas {
         }
 
         //Si está repetido
-        if (doubled){
+        /*if (doubled){
             //Se vuelve a llamar la función para que se accese un nuevo nombre
             return generateName();
         }
@@ -110,7 +111,8 @@ public class CreadorDeOleadas {
         else {
             //Devuelve el nombre accesado
             return name;
-        }
+        }*/
+        return name;
     }
 
     /**
@@ -228,7 +230,7 @@ public class CreadorDeOleadas {
         //Recorre la lista
         while (temp != null){
             //Va insertando los elementos en el arbol
-            tree.insert(temp);
+            tree.setRoot(tree.insert(temp));
             temp = temp.getNext();
         }
         //Retorna el arbol

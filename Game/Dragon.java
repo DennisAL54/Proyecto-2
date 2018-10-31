@@ -28,9 +28,9 @@ public class Dragon {
     private Dragon prev;
 
     //Atributos en árbol
-    private int height;
-    private Dragon left;
-    private Dragon right;
+    private int height = 1;
+    private Dragon left = null;
+    private Dragon right = null;
 
     /**
      * Constructor de Dragon
