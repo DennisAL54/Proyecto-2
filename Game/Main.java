@@ -1,5 +1,6 @@
 package Game;
 
+
 /**
  * Ventana
  */
@@ -14,8 +15,7 @@ public class Main {
 
 
     public static void main(String Args[]){
-
-
+        
         System.out.println("\nTest CreadorDeOleadas:\n");
         System.out.println("Test Lista Dragones Aleatorios:\n");
 
@@ -40,6 +40,25 @@ public class Main {
         BinaryTree binaryTree = creador.turnToBinaryTree(oleada);
 
         binaryTree.preOrder();
+        
+        
+        System.out.println(" \n");
+
+        System.out.println("Test ToXML:\n");
+        
+        String xml = creador.oleadaToXML(oleada);
+        
+        System.out.println(xml);
+        
+        
+        
+        System.out.println(" \n");
+
+        System.out.println("Test ToOleada:\n");
+        
+        oleada = creador.XMLToOleada(xml);
+        
+        System.out.println(oleada.getHead().getNext().getName());
 
     }
 

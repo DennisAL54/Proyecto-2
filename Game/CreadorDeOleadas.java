@@ -1,5 +1,9 @@
 package Game;
 
+import java.beans.XMLEncoder;
+import java.beans.XMLDecoder;
+import java.io.*;
+
 /**
  * Creador de Oleadas
  *
@@ -259,6 +263,39 @@ public class CreadorDeOleadas {
 
     public Lista insertionSort(Lista oleada){
         return null;
+    }
+    
+    
+    public String oleadaToXML(Lista oleada){
+        String ubicacion = "./oleada.xml";
+        try{
+            FileOutputStream fos = new FileOutputStream(new File(ubicacion));
+            XMLEncoder encoder = new XMLEncoder(fos);
+            encoder.writeObject(oleada);
+            encoder.close();
+            fos.close();
+        }
+        catch (IOException ex){
+            ex.printStackTrace();
+        }
+        return ubicacion;
+    }
+    
+    
+    public Lista XMLToOleada(String ubicacion){
+        
+        try{
+            FileInputStream fis = new FileInputStream(new File(ubicacion));
+            XMLDecoder decoder = new XMLDecoder(fis);
+            
+            Lista oleada = (Lista) decoder.readObject();
+            decoder.close();
+            fis.close();
+        }
+        catch (IOException ex){
+            ex.printStackTrace();
+        }
+        return oleada;
     }
 
 
