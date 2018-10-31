@@ -4,6 +4,7 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Random;
+import javafx.scene.image.ImageView;
 import javax.swing.ImageIcon;
 
 /**
@@ -11,6 +12,13 @@ import javax.swing.ImageIcon;
  * @author Bryan
  */
 public class Dragon {
+    private Image image;
+    private int dx,dy,lanzarFuegoPosib;
+    private final int Velocidad;
+    private ArrayList lanzarFuego;
+    private Random random;
+    private boolean visible; 
+    
     private String name;
     private int rechargeSpeed;
     private int age;
@@ -19,18 +27,15 @@ public class Dragon {
     private Dragon padre;
     private Dragon hijo1;
     private Dragon hijo2;
-    private Image image;
-    private int x,y,dx,dy,lanzarFuegoPosib;
-    private final int Velocidad;
-    private ArrayList lanzarFuego;
-    private Random random;
-    private boolean visible;
+    
+    private int x;
+    private int y;
     
     //Atributos en lista
     private Dragon next;
     private Dragon prev;
-    
-    //Atributos en árbol
+
+    //Atributos en Ã¡rbol
     private int height = 1;
     private Dragon left = null;
     private Dragon right = null;
@@ -39,162 +44,117 @@ public class Dragon {
      * Constructor del Dragon 
      * @param x - posición en x
      */
-    public Dragon(int x){
+    public Dragon(String name, int rS, int age, int resistance, String classType){
         ImageIcon ii = new ImageIcon(this.getClass().getResource("images/dragon1.gif"));
         image = ii.getImage();
         this.x = x;
         this.y = y;
         Velocidad = 1;        
         visible = true;
-        y = 200;
-        x =1050-image.getWidth(null)/2;
+        //y = 200;
+        //x =1050-image.getWidth(null)/2;
         dx = 0;
         dy = 0;
         lanzarFuegoPosib = 100;
         lanzarFuego = new ArrayList();
         random = new Random();
-    }
-    
-    /**
-     * Constructor de Dragon
-     * @param name - Nombre
-     * @param rS - Velocidad de recarga de fuego
-     * @param age - Edad
-     * @param resistance - Resistencia
-     * @param classType - Clase de Dragon
-     */
-    public Dragon(String name, int rS, int age, int resistance, String classType){
+        
         this.name = name;
         this.rechargeSpeed = rS;
         this.age = age;
         this.resistance = resistance;
         this.classType = classType;
-        
-        Velocidad = 1; 
     }
     
     //Métodos setters y getters
-    
-    //Getters & Setters
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getRechargeSpeed() {
-        return rechargeSpeed;
-    }
-
-    public void setRechargeSpeed(int rechargeSpeed) {
-        this.rechargeSpeed = rechargeSpeed;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public int getResistance() {
-        return resistance;
-    }
-
-    public void setResistance(int resistance) {
-        this.resistance = resistance;
-    }
-
-    public String getClassType() {
-        return classType;
-    }
-
-    public void setClassType(String classType) {
-        this.classType = classType;
-    }
-
-    public Dragon getPadre() {
-        return padre;
-    }
-
-    public void setPadre(Dragon padre) {
-        this.padre = padre;
-    }
-
-    public Dragon getHijo1() {
-        return hijo1;
-    }
-
-    public void setHijo1(Dragon hijo1) {
-        this.hijo1 = hijo1;
-    }
-
-    public Dragon getHijo2() {
-        return hijo2;
-    }
-
-    public void setHijo2(Dragon hijo2) {
-        this.hijo2 = hijo2;
-    }
-    
     public void setX(int x){
         this.x = x;
     }
-
     public void setY(int y){
         this.y = y;
     }
-    
     public int getX(){
         return x;
     }
-
     public int getY(){
         return y;
-    }
-    
+    }    
     public int getVelocidad(){
         return Velocidad;
-    }
-    
-
+    }    
     public Image getImage(){
         return image;
-    }
-    
+    }    
     public void setVisible(boolean visible){
         this.visible = visible;
-    }
-    
+    }    
     public boolean isVisible(){
         return visible;
     }
     
     
-    //Getters & Setters al estar en lista
-
+     public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public int getRechargeSpeed() {
+        return rechargeSpeed;
+    }
+    public void setRechargeSpeed(int rechargeSpeed) {
+        this.rechargeSpeed = rechargeSpeed;
+    }
+    public int getAge() {
+        return age;
+    }
+    public void setAge(int age) {
+        this.age = age;
+    }
+    public int getResistance() {
+        return resistance;
+    }
+    public void setResistance(int resistance) {
+        this.resistance = resistance;
+    }
+    public String getClassType() {
+        return classType;
+    }
+    public void setClassType(String classType) {
+        this.classType = classType;
+    }
+     public Dragon getPadre() {
+        return padre;
+    }
+    public void setPadre(Dragon padre) {
+        this.padre = padre;
+    }
+    public Dragon getHijo1() {
+        return hijo1;
+    }
+    public void setHijo1(Dragon hijo1) {
+        this.hijo1 = hijo1;
+    }
+    public Dragon getHijo2() {
+        return hijo2;
+    }
+    public void setHijo2(Dragon hijo2) {
+        this.hijo2 = hijo2;
+    }
     public Dragon getNext() {
         return next;
     }
-
     public void setNext(Dragon next) {
         this.next = next;
     }
-
     public Dragon getPrev() {
         return prev;
     }
-
     public void setPrev(Dragon prev) {
         this.prev = prev;
     }
-
-
-    //Getters & Setters al estar en árbol
+    
+    //Getters & Setters al estar en Ã¡rbol
 
     public int getHeight() {
         return height;
@@ -219,14 +179,16 @@ public class Dragon {
     public void setRight(Dragon right) {
         this.right = right;
     }
-    
-    
+
+
+
+
     public void generateCoords(int i){
-        int x = 900;
-        int y;
+        double x = 900;
+        double y;
 
         if (i == 1) {
-            y = 285;
+            y = 285.0;
             x = x + 80*0;
         } else if (i <= 3) { //2-3
             y = 245 + (80*(i-2));
@@ -252,11 +214,9 @@ public class Dragon {
             x = (x + (80*7)) + ((i-8)/8)*80;
         }
 
-        this.setY(y);
-        this.setX(x);
-
+        this.setY((int) y);
+        this.setX((int) x);
     }
-    
     
     /**
      * Acciones de movimiento de los dragones  
@@ -269,8 +229,8 @@ public class Dragon {
         if((y>0 && dy<0) || (y<370 && dy>0)) // Límites de la pantalla en x
             y += dy;
         
-        if(random.nextInt()% lanzarFuegoPosib == 1 && x > 0) // fuego dragones
-            lanzarFuego.add(new Fuego(x, y));
+        //if(random.nextInt()% lanzarFuegoPosib == 1 && x > 0) // fuego dragones
+          //  lanzarFuego.add(new Fuego(x, y));
     }
     /**
      * Arreglo en donde se crean los proyectiles 
