@@ -1,4 +1,4 @@
-package Game;
+package GameofSorts;
 
 import java.beans.XMLEncoder;
 import java.beans.XMLDecoder;
@@ -241,6 +241,11 @@ public class CreadorDeOleadas {
         return tree;
     }
 
+    /**
+     * 
+     * @param oleada
+     * @return 
+     */
     public BinaryTree turnToBinaryTree(Lista oleada) {
         BinaryTree binaryTree = new BinaryTree();
         binaryTree.setRoot(oleada.getHead());
@@ -252,20 +257,12 @@ public class CreadorDeOleadas {
         }
         return binaryTree;
     }
-
-    public Lista selectionSort(Lista oleada){
-        return null;
-    }
-
-    public Lista quickSort(Lista oleada){
-        return null;
-    }
-
-    public Lista insertionSort(Lista oleada){
-        return null;
-    }
     
-    
+    /**
+     * 
+     * @param oleada
+     * @return 
+     */
     public String oleadaToXML(Lista oleada){
         String ubicacion = "./oleada.xml";
         try{
@@ -281,7 +278,11 @@ public class CreadorDeOleadas {
         return ubicacion;
     }
     
-    
+    /**
+     * 
+     * @param ubicacion
+     * @return 
+     */
     public Lista XMLToOleada(String ubicacion){
         
         try{
@@ -298,7 +299,11 @@ public class CreadorDeOleadas {
         return oleada;
     }
     
-    
+    /**
+     * 
+     * @param lista
+     * @return 
+     */
     public Lista selectionSort(Lista lista){
         Lista Lord = new Lista();
         for(Dragon nodo1 = lista.getHead(); nodo1 != null; nodo1 = nodo1.getNext()) {
@@ -329,8 +334,12 @@ public class CreadorDeOleadas {
         return Lord;
     }
     
-    
-    public Dragon InSort(Dragon head){
+    /**
+     * 
+     * @param head
+     * @return 
+     */
+    public Dragon insertionSort(Dragon head){
         Lista List = new Lista();
         if(head == null){
             return null;
@@ -356,8 +365,13 @@ public class CreadorDeOleadas {
        
     }
     
+    /**
+     * 
+     * @param lista
+     * @return 
+     */
     public Lista quickSort(Lista lista){
-        
+        return null;
     }
 
 
