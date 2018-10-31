@@ -11,12 +11,29 @@ import javax.swing.ImageIcon;
  * @author Bryan
  */
 public class Dragon {
+    private String name;
+    private int rechargeSpeed;
+    private int age;
+    private int resistance;
+    private String classType;
+    private Dragon padre;
+    private Dragon hijo1;
+    private Dragon hijo2;
     private Image image;
     private int x,y,dx,dy,lanzarFuegoPosib;
     private final int Velocidad;
     private ArrayList lanzarFuego;
     private Random random;
-    private boolean visible; 
+    private boolean visible;
+    
+    //Atributos en lista
+    private Dragon next;
+    private Dragon prev;
+    
+    //Atributos en árbol
+    private int height = 1;
+    private Dragon left = null;
+    private Dragon right = null;
     
     /**
      * Constructor del Dragon 
@@ -38,7 +55,92 @@ public class Dragon {
         random = new Random();
     }
     
+    /**
+     * Constructor de Dragon
+     * @param name - Nombre
+     * @param rS - Velocidad de recarga de fuego
+     * @param age - Edad
+     * @param resistance - Resistencia
+     * @param classType - Clase de Dragon
+     */
+    public Dragon(String name, int rS, int age, int resistance, String classType){
+        this.name = name;
+        this.rechargeSpeed = rS;
+        this.age = age;
+        this.resistance = resistance;
+        this.classType = classType;
+        
+        Velocidad = 1; 
+    }
+    
     //Métodos setters y getters
+    
+    //Getters & Setters
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getRechargeSpeed() {
+        return rechargeSpeed;
+    }
+
+    public void setRechargeSpeed(int rechargeSpeed) {
+        this.rechargeSpeed = rechargeSpeed;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getResistance() {
+        return resistance;
+    }
+
+    public void setResistance(int resistance) {
+        this.resistance = resistance;
+    }
+
+    public String getClassType() {
+        return classType;
+    }
+
+    public void setClassType(String classType) {
+        this.classType = classType;
+    }
+
+    public Dragon getPadre() {
+        return padre;
+    }
+
+    public void setPadre(Dragon padre) {
+        this.padre = padre;
+    }
+
+    public Dragon getHijo1() {
+        return hijo1;
+    }
+
+    public void setHijo1(Dragon hijo1) {
+        this.hijo1 = hijo1;
+    }
+
+    public Dragon getHijo2() {
+        return hijo2;
+    }
+
+    public void setHijo2(Dragon hijo2) {
+        this.hijo2 = hijo2;
+    }
+    
     public void setX(int x){
         this.x = x;
     }
@@ -71,6 +173,90 @@ public class Dragon {
     public boolean isVisible(){
         return visible;
     }
+    
+    
+    //Getters & Setters al estar en lista
+
+    public Dragon getNext() {
+        return next;
+    }
+
+    public void setNext(Dragon next) {
+        this.next = next;
+    }
+
+    public Dragon getPrev() {
+        return prev;
+    }
+
+    public void setPrev(Dragon prev) {
+        this.prev = prev;
+    }
+
+
+    //Getters & Setters al estar en árbol
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public Dragon getLeft() {
+        return left;
+    }
+
+    public void setLeft(Dragon left) {
+        this.left = left;
+    }
+
+    public Dragon getRight() {
+        return right;
+    }
+
+    public void setRight(Dragon right) {
+        this.right = right;
+    }
+    
+    
+    public void generateCoords(int i){
+        int x = 900;
+        int y;
+
+        if (i == 1) {
+            y = 285;
+            x = x + 80*0;
+        } else if (i <= 3) { //2-3
+            y = 245 + (80*(i-2));
+            x = x + 80*1;
+        } else if (i <= 6) { //4-5-6
+            y = 205 + (80*(i-4));
+            x = x + 80*2;
+        } else if (i <= 10) { //7-8-9-10
+            y = 165 + (80*(i-7));
+            x = x + 80*3;
+        } else if (i <= 15) { //11-12-13-14-15
+            y = 125 + (80*(i-11));
+            x = x + 80*4;
+        } else if (i <= 21) { //16-17-18-19-20-21
+            y = 85 + (80*(i-16));
+            x = x + 80*5;
+        } else if (i <= 28) { //22-23-24-25-26-27-28
+            y = 45 + (80*(i-22));
+            x = x + 80*6;
+        } else { //29-30-31-32-33-34-35-36 - - - >
+            i = ((i-29) + 8);
+            y = 5 + (80 * (i%8));
+            x = (x + (80*7)) + ((i-8)/8)*80;
+        }
+
+        this.setY(y);
+        this.setX(x);
+
+    }
+    
     
     /**
      * Acciones de movimiento de los dragones  
