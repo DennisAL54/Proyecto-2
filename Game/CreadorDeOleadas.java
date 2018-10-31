@@ -249,5 +249,17 @@ public class CreadorDeOleadas {
         return binaryTree;
     }
 
+    public Lista selectionSort(Lista oleada){
+        return null;
+    }
+
+    public Lista quickSort(Lista oleada){
+        return null;
+    }
+
+    public Lista insertionSort(Lista oleada){
+        return null;
+    }
+
 
 }
