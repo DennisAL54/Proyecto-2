@@ -1,5 +1,7 @@
 package GameofSorts;
 
+import static GameofSorts.Main.creador;
+import static GameofSorts.Main.oleada;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JPanel;
@@ -21,12 +23,11 @@ public class Ventana extends JPanel implements ActionListener {
     private Image image;
     private Timer timer;
     private CaballeroMedieval caballeroMedieval;
-    private Dragon dragon [];
-    private final int DragonColum, DragonFila, Dragon_inicioX, Dragon_inicioY, Dragon_Relleno;
+    //private Dragon dragon ;
+    //private final int DragonColum, DragonFila, Dragon_inicioX, Dragon_inicioY, Dragon_Relleno;
     static int Vidas;
     private Font font;
-    private String vida, layoutActual, dragonStarts, nombre, edad, clase, padre; 
-    
+    private String vida, layoutActual, dragonStarts, nombre, edad, clase, padre;
     
     /**
      * Constructor del juego
@@ -35,24 +36,27 @@ public class Ventana extends JPanel implements ActionListener {
         setFocusable(true);
         addKeyListener(new Listener());
         
-        ImageIcon ii = new ImageIcon(this.getClass().getResource("images/Castillo3.jpg"));
+        ImageIcon ii = new ImageIcon(this.getClass().getResource("images/Castillo.jpg"));
         image = ii.getImage();
         
         caballeroMedieval = new CaballeroMedieval(); 
-                
+        
+        oleada = creador.newOleada();        
+        
+        /**        
         DragonColum = 8; // Cantidad de dragones
         DragonFila = 3; // Posicion en Y
-        Dragon_inicioX = 600;
+        Dragon_inicioX = 950;
         Dragon_inicioY = 90;
         Dragon_Relleno = 1; // hitbox dragon
-        
-        dragon = new Dragon[DragonColum];
-        for(int i = 0; i < DragonColum; i++){
+        */
+        //dragon = new Dragon[DragonColum];
+        //for(int i = 0; i < DragonColum; i++){
             //for(int j = 0; j < DragonFila; j++){
-            dragon[i]= new Dragon(DragonColum);
-            dragon[i].setX(Dragon_inicioX + i*dragon[i].getImage().getWidth(null) + i*Dragon_Relleno);
+            //dragon[i]= new Dragon(DragonColum);
+            //dragon[i].setX(Dragon_inicioX + i*dragon[i].getImage().getWidth(null) + i*Dragon_Relleno);
                 //dragon[i].setY(Dragon_inicioY + j*dragon[i].getImage().getHeight(null) + j*Dragon_Relleno);
-            }
+            //}
         
         Vidas = 3;
         font = new Font("Monospaced", Font.TYPE1_FONT,20); // Características de la letra
@@ -66,17 +70,23 @@ public class Ventana extends JPanel implements ActionListener {
     public void paint(Graphics g){
         super.paint(g);
         Graphics2D g2d = (Graphics2D)g;
+        //canvas
+        g.setColor(Color.WHITE);
+        g.fillRect(600, 90, 100, 100);
+        
         // draw Castillo fondo
         g.drawImage(image, 0, 0, getWidth(), getHeight(),this);
         // draw caballeroMedieval
         g2d.drawImage(caballeroMedieval.getImage(), caballeroMedieval.getX(), caballeroMedieval.getY(), this);
-        // draw Dragones
-        for(int i = 0; i < DragonColum; i++)
-            for(int j = 0; j < DragonFila; j++){
-                if(dragon[i].isVisible())
-                    g2d.drawImage(dragon[i].getImage(), dragon[i].getX(), dragon[i].getY(), this);
-            }
         
+        
+        // draw Dragones
+        Dragon temp = oleada.getHead();
+        while (temp != null){
+                g2d.drawImage(temp.getImage(), temp.getX(),temp.getY(),this);
+                temp = temp.getNext();
+        }    
+            
         // draw Fuego
         ArrayList<Fuego> fuego = caballeroMedieval.getfuego();
         for(int i = 0; i < fuego.size(); i++){
@@ -108,8 +118,31 @@ public class Ventana extends JPanel implements ActionListener {
         // Updates
         caballeroMedieval.logic();
         // Dragon
+        Dragon temp = oleada.getHead();
+        while (temp != null){
+            temp.logic();
+            
+            
+            if(temp.getX() == 0)
+                if (temp.isVisible() == true)
+                    Vidas -= 1;
+                    if (Vidas == 0)
+                        gameOver(0);
+            
+            //Hit Fuego
+            for(int li = 0; li < fuego.size(); li++){
+                Fuego l = fuego.get(li);
+                if(l.getLimites().intersects(temp.getBounds()) && l.isVisible() && temp.isVisible()){
+                    temp.setVisible(false);
+                    l.setVisible(false);
+                }
+            }
+        
+        }
+        
+        /**
         for(int i = 0; i < DragonColum; i++){
-            for(int j = 0; j < DragonFila; j++){
+            //for(int j = 0; j < DragonFila; j++){
                 dragon[i].logic(); // Updates
                 if(dragon[i].getX() == 0)
                     if (dragon[i].isVisible() == true)
@@ -129,13 +162,13 @@ public class Ventana extends JPanel implements ActionListener {
                 //Hit Fuego
                 for(int li = 0; li < fuego.size(); li++){
                     Fuego l = fuego.get(li);
-                    if(l.getLimites().intersects(dragon[i].getBounds()) && l.isVisible() && dragon[i].isVisible()){
+                    //if(l.getLimites().intersects(dragon[i].getBounds()) && l.isVisible() && dragon[i].isVisible()){
                         dragon[i].setVisible(false);
                         l.setVisible(false);  
-                    }
+                    //}
                 }
-            }
-        }
+            //}
+        }*/
         
         for(int i = 0; i < fuego.size(); i++){
             Fuego l = fuego.get(i);
@@ -176,4 +209,3 @@ public class Ventana extends JPanel implements ActionListener {
         timer.stop();
     }
 }
-
