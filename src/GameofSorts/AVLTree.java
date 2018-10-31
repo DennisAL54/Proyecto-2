@@ -1,4 +1,4 @@
-package Game;
+package GameofSorts;
 
 /**
  * Representa un árbol AVL.
@@ -31,9 +31,9 @@ public class AVLTree {
 
 
     /**
-     *
+     * Retorna la altura del dragon en el arbol.
      * @param dragon
-     * @return
+     * @return altura
      */
     public int height(Dragon dragon){
         if (dragon == null) {
@@ -43,7 +43,7 @@ public class AVLTree {
     }
 
     /**
-     *
+     * Retorna el mayor.
      * @param a
      * @param b
      * @return
@@ -53,9 +53,9 @@ public class AVLTree {
     }
 
     /**
-     *
-     * @param y
-     * @return
+     * Genera una rotacion hacia la derecha.
+     * @param y - Dragon
+     * @return Dragon
      */
     public Dragon rightRotate(Dragon y){
         Dragon x = y.getLeft();
@@ -75,9 +75,9 @@ public class AVLTree {
     }
 
     /**
-     *
-     * @param x
-     * @return
+     * Genera una rotacion a la izquierda.
+     * @param x - Dragon
+     * @return Dragon
      */
     public Dragon leftRotate(Dragon x) {
         Dragon y = x.getRight();
@@ -97,8 +97,8 @@ public class AVLTree {
 
     /**
      * Obtiene el factor de balanceo del Dragon
-     * @param dragon
-     * @return
+     * @param dragon - Dragon por verificar
+     * @return factor de balanceo
      */
     public int getBalance(Dragon dragon) {
         if (dragon == null)
@@ -109,9 +109,9 @@ public class AVLTree {
 
 
     /**
-     *
-     * @param dragon
-     * @return
+     * Insertar un Dragon al arbol AVL.
+     * @param dragon - root
+     * @return dragon insertado
      */
     public Dragon insert(Dragon dragon){
         if (this.getRoot() == null){
@@ -124,10 +124,10 @@ public class AVLTree {
     }
 
     /**
-     *
+     * Auxiliar de insertar.
      * @param node
      * @param dragon
-     * @return
+     * @return dragon insertado
      */
     public Dragon insertAux(Dragon node, Dragon dragon) {
 
@@ -199,6 +199,5 @@ public class AVLTree {
             preOrderAux(node.getRight());
         }
     }
-
 
 }
