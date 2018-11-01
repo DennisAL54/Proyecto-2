@@ -310,19 +310,19 @@ public class CreadorDeOleadas {
      * @return 
      */
     public Lista selectionSort(Lista lista){
-        Lista Lord = new Lista();
-        for(Dragon nodo1 = lista.getHead(); nodo1 != null; nodo1 = nodo1.getNext()) {
-            Dragon min = nodo1;
-            for(Dragon nodo2 = nodo1; nodo2 != null; nodo2 = nodo2.getNext()){
-                if(min.getAge() > nodo2.getAge()){
-                    min = nodo2;
+        //Lista Lord = new Lista();
+        for(int i = 0; i < lista.getSize() - 1; i++) {
+            int index = i;
+            for(int j = i + 1; j < lista.getSize(); j++){
+                if(lista.getPosition(i).getAge() < lista.getPosition(index).getAge()){
+                    index = j;
                 }
 
             }
-            Dragon temp = new Dragon(nodo1.getName(),nodo1.getRechargeSpeed(),nodo1.getAge(),nodo1.getResistance(),nodo1.getClassType());
-            nodo1 = min;
-            min = temp;
-            Lord.add(min);
+            Dragon temp = lista.getPosition(index);
+            lista.setPosition(index, lista.getPosition(index));
+            lista.setPosition(i, temp);
+            //Lord.add(min);
             /*nodo1.setAge(min.getAge());
             nodo1.setName(min.getName());
             nodo1.setRechargeSpeed(min.getRechargeSpeed());
@@ -334,9 +334,9 @@ public class CreadorDeOleadas {
             min.setRechargeSpeed(temp.getRechargeSpeed());
             min.setResistance(temp.getResistance());
             min.setClassType(temp.getClassType());*/
-            Lord.add(min);
+            //Lord.add(min);
         }
-        return Lord;
+        return lista;
     }
     
     /**

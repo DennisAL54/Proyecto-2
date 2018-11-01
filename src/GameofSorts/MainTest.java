@@ -60,6 +60,10 @@ public class MainTest {
         
         System.out.println(oleada.getHead().getNext().getName());
 
+        oleada = creador.selectionSort(oleada);
+
+        System.out.println(oleada);
+
     }
 
     public static int getNivel() {

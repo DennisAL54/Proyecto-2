@@ -1,4 +1,4 @@
-package Game;
+package GameofSorts;
 
 /**
  * Representacion de una Lista
@@ -37,6 +37,29 @@ public class Lista {
 
     public void setSize(int size) {
         this.size = size;
+    }
+
+    public Dragon getPosition(int pos){
+        if(pos <0 && pos >=size){
+            return null;
+        }
+        Dragon temp = head;
+        int i = 0;
+        while(i < pos){
+            temp = temp.getNext();
+        }
+        return temp;
+    }
+    public void setPosition(int pos, Dragon dragon){
+        if(pos < 0 && pos >= size){
+            System.out.println("No valido");
+        }
+        Dragon temp = head;
+        int i = 0;
+        while(i < pos){
+            this.head = head.getNext();
+        }
+        this.head = dragon;
     }
 
 
