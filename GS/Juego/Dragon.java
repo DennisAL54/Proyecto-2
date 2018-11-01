@@ -8,7 +8,7 @@ import javafx.scene.image.ImageView;
 import javax.swing.ImageIcon;
 
 /**
- *
+ * Representa un dragon.
  * @author Bryan
  */
 public class Dragon {
@@ -190,7 +190,10 @@ public class Dragon {
 
 
 
-
+    /**
+     * Se generaran las coordenadas automaticamente con su posicion de ingreso
+     * @param i - posicion
+     */
     public void generateCoords(int i){
         int x = 900;
         int y;
