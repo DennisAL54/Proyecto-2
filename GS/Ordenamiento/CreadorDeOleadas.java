@@ -316,33 +316,20 @@ public class CreadorDeOleadas {
      * @return oleada ordenada
      */
     public Lista selectionSort(Lista lista){
-        Lista Lord = new Lista();
-        for(Dragon nodo1 = lista.getHead(); nodo1 != null; nodo1 = nodo1.getNext()) {
-            Dragon min = nodo1;
-            for(Dragon nodo2 = nodo1; nodo2 != null; nodo2 = nodo2.getNext()){
-                if(min.getAge() > nodo2.getAge()){
-                    min = nodo2;
+        //Lista Lord = new Lista();
+        for(int i = 0; i < lista.getSize() - 1; i++) {
+            int index = i;
+            for(int j = i + 1; j < lista.getSize(); j++){
+                if(lista.getPosition(i).getAge() < lista.getPosition(index).getAge()){
+                    index = j;
                 }
 
             }
-            Dragon temp = new Dragon(nodo1.getName(),nodo1.getRechargeSpeed(),nodo1.getAge(),nodo1.getResistance(),nodo1.getClassType());
-            nodo1 = min;
-            min = temp;
-            Lord.add(min);
-            /*nodo1.setAge(min.getAge());
-            nodo1.setName(min.getName());
-            nodo1.setRechargeSpeed(min.getRechargeSpeed());
-            nodo1.setResistance(min.getResistance());
-            nodo1.setClassType(min.getClassType());
-            min.setAge(temp.getAge());
-            min.setAge(temp.getAge());
-            min.setName(temp.getName());
-            min.setRechargeSpeed(temp.getRechargeSpeed());
-            min.setResistance(temp.getResistance());
-            min.setClassType(temp.getClassType());*/
-            Lord.add(min);
+            Dragon temp = lista.getPosition(index);
+            lista.setPosition(index, lista.getPosition(index));
+            lista.setPosition(i, temp);
         }
-        return Lord;
+        return lista;
     }
     
     
@@ -352,30 +339,21 @@ public class CreadorDeOleadas {
      * @param head
      * @return oleada ordenada
      */
-    public Dragon insertionSort(Dragon head){
-        Lista List = new Lista();
-        if(head == null){
-            return null;
-        }
-        Dragon dummy = new Dragon("w",0,0,0,"r");
-        Dragon prev = dummy;
-        Dragon temp = null;
-        Dragon curr = head;
-        while(curr != null){
-            temp = head.getNext();
-            while(prev.getNext() != null && prev.getNext().getRechargeSpeed() > curr.getRechargeSpeed()){
-                prev = prev.getNext();
+    public static Lista insertionSort(Lista lista){
+        Dragon temp;
+        for(int i = 1; i < lista.getSize(); i++){
+            for(int j =i; j>0; j--){
+                if(lista.getPosition(j-1).getRechargeSpeed() > lista.getPosition(j).getRechargeSpeed()){
+                    temp = lista.getPosition(j);
+                    lista.setPosition(j, lista.getPosition(j-1));
+                    lista.setPosition(j-1,temp);
+
+
+                }
             }
-            curr.setNext(prev.getNext());
-            prev.setNext(curr);
-            curr = temp;
-            prev = dummy;
-            
         }
-        List.add(dummy.getNext());
-        
-        return dummy.getNext();
-       
+        return lista;
+
     }
     
     /**
@@ -383,9 +361,67 @@ public class CreadorDeOleadas {
      * @param lista
      * @return oleada ordenada
      */
-    public Lista quickSort(Lista lista){
-        return null;
+    public void quickSort(Lista lista) {
+        if (lista == null || lista.getSize() <= 1){
+            return;
+        }
+        quick(lista, 0, lista.getSize());
     }
 
+    public int findKthLargest(Lista lista, int k) {
+        // f([11,12,13], 1) => 13
+        // f([11,12,13], 2) => 12
+        assert(1 <= k && k <= lista.getSize());
+        int targetIdx = lista.getSize() - k;
+        int start = 0;
+        int end = lista.getSize();
+        while (start + 1 < end) {
+            int i = partition(lista, start, end);
+            if (i == targetIdx) {
+                return lista.getPosition(i).getAge();
+            } else if (i < targetIdx) {
+                start = i + 1;
+            } else {
+                end = i;
+            }
+        }
+        return lista.getPosition(start).getAge();
+    }
+
+    private void quick(Lista lista, int start, int end){
+        if (start + 1 >= end){
+            return;
+        }
+        int mid = partition(lista, start, end);
+        quick(lista, start, mid);
+        quick(lista, mid + 1, end);
+    }
+
+    private int partition(Lista lista, int start, int end){
+        // start inclusive
+        // end exclusive
+        // return the pivot position
+
+        if (start + 1 >= end){
+            return start;
+        }
+
+        int pivot = lista.getPosition(start).getAge();
+        int i = start;
+        for (int j = start + 1; j < end; ++j) {
+            if(lista.getPosition(j).getAge() <= pivot){
+                i += 1;
+                swap(lista, i, j);
+            }
+        }
+        swap(lista, start, i);
+        return i;
+    }
+
+    private void swap(Lista lista, int x, int y){
+        Dragon temp = lista.getPosition(x);
+        lista.setPosition(x, lista.getPosition(y));
+        lista.setPosition(y, temp);
+    }
 
 }
