@@ -59,6 +59,8 @@ public class MainTest {
         oleada = creador.XMLToOleada(xml);
         
         System.out.println(oleada.getHead().getNext().getName());
+        
+        System.out.println("------------------------------------------------------------");
 
         oleada = creador.selectionSort(oleada);
 

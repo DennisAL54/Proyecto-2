@@ -94,7 +94,7 @@ public class Lista {
      * Elimina un Dragon
      * @param name - nombre del Dragon
      */
-    public void destroyEnemy(String name) {
+    /*public void destroyEnemy(String name) {
 
         if (this.getHead().getName() == name){
 
