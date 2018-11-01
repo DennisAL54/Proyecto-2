@@ -369,8 +369,6 @@ public class CreadorDeOleadas {
     }
 
     public int findKthLargest(Lista lista, int k) {
-        // f([11,12,13], 1) => 13
-        // f([11,12,13], 2) => 12
         assert(1 <= k && k <= lista.getSize());
         int targetIdx = lista.getSize() - k;
         int start = 0;
@@ -398,10 +396,6 @@ public class CreadorDeOleadas {
     }
 
     private int partition(Lista lista, int start, int end){
-        // start inclusive
-        // end exclusive
-        // return the pivot position
-
         if (start + 1 >= end){
             return start;
         }
