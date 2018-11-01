@@ -362,12 +362,69 @@ public class CreadorDeOleadas {
     }
     /**
      * 
-     * @param lista
+     * @paramlista
      * @return 
      */
-    public Lista quickSort(Lista lista){
-        return null;
+    public void quickSort(Lista lista) {
+        if (lista == null || lista.getSize() <= 1){
+            return;
+        }
+        quick(lista, 0, lista.getSize());
     }
 
+    public int findKthLargest(Lista lista, int k) {
+        // f([11,12,13], 1) => 13
+        // f([11,12,13], 2) => 12
+        assert(1 <= k && k <= lista.getSize());
+        int targetIdx = lista.getSize() - k;
+        int start = 0;
+        int end = lista.getSize();
+        while (start + 1 < end) {
+            int i = partition(lista, start, end);
+            if (i == targetIdx) {
+                return lista.getPosition(i).getAge();
+            } else if (i < targetIdx) {
+                start = i + 1;
+            } else {
+                end = i;
+            }
+        }
+        return lista.getPosition(start).getAge();
+    }
 
+    private void quick(Lista lista, int start, int end){
+        if (start + 1 >= end){
+            return;
+        }
+        int mid = partition(lista, start, end);
+        quick(lista, start, mid);
+        quick(lista, mid + 1, end);
+    }
+
+    private int partition(Lista lista, int start, int end){
+        // start inclusive
+        // end exclusive
+        // return the pivot position
+
+        if (start + 1 >= end){
+            return start;
+        }
+
+        int pivot = lista.getPosition(start).getAge();
+        int i = start;
+        for (int j = start + 1; j < end; ++j) {
+            if(lista.getPosition(j).getAge() <= pivot){
+                i += 1;
+                swap(lista, i, j);
+            }
+        }
+        swap(lista, start, i);
+        return i;
+    }
+
+    private void swap(Lista lista, int x, int y){
+        Dragon temp = lista.getPosition(x);
+        lista.setPosition(x, lista.getPosition(y));
+        lista.setPosition(y, temp);
+    }
 }

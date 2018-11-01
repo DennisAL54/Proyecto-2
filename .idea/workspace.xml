@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="67c43c44-4401-493b-b6ad-bdfa658d1760" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/GameofSorts/CreadorDeOleadas.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/GameofSorts/CreadorDeOleadas.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/GameofSorts/Ventana.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/GameofSorts/Ventana.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nbproject/private/private.xml" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/private/private.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nbproject/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/project.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameofSorts/CreadorDeOleadas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameofSorts/CreadorDeOleadas.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -72,14 +68,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="4596" />
+          <entry key="JAVA" value="4916" />
           <entry key="PLAIN_TEXT" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="13" />
-          <entry key="java" value="4596" />
+          <entry key="java" value="4916" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -90,12 +86,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GameofSorts/CreadorDeOleadas.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="359" column="21" selection-start-line="359" selection-start-column="21" selection-end-line="359" selection-end-column="21" />
-              <folding>
-                <element signature="e#11149#11150#0" expanded="true" />
-                <element signature="e#11176#11177#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="460">
+              <caret line="430" lean-forward="true" selection-start-line="430" selection-end-line="430" />
             </state>
           </provider>
         </entry>
@@ -135,15 +127,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameofSorts/Client/src/client/Client.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameofSorts/MainTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1156">
@@ -155,7 +138,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameofSorts/Lista.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1462">
+            <state relative-caret-position="834">
               <caret line="96" column="4" selection-start-line="96" selection-start-column="4" selection-end-line="96" selection-end-column="4" />
             </state>
           </provider>
@@ -189,10 +172,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-26" />
-    <option name="y" value="20" />
+    <option name="x" value="883" />
+    <option name="y" value="61" />
     <option name="width" value="899" />
-    <option name="height" value="687" />
+    <option name="height" value="654" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -226,7 +209,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541052314972" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541060070960" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
@@ -296,7 +279,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-26" y="20" width="899" height="687" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.4710947" />
@@ -479,12 +462,8 @@
     <entry file="file://$PROJECT_DIR$/out/production/Proyecto#3Netbeans/GameofSorts/Ventana.class" />
     <entry file="file://$PROJECT_DIR$/src/GameofSorts/CreadorDeOleadas.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="359" column="21" selection-start-line="359" selection-start-column="21" selection-end-line="359" selection-end-column="21" />
-          <folding>
-            <element signature="e#11149#11150#0" expanded="true" />
-            <element signature="e#11176#11177#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="460">
+          <caret line="430" lean-forward="true" selection-start-line="430" selection-end-line="430" />
         </state>
       </provider>
     </entry>
@@ -510,13 +489,7 @@
     <entry file="file://$PROJECT_DIR$/out/production/Proyecto#3Netbeans/GameofSorts/images/Hipogrifo.gif">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameofSorts/Client/src/client/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameofSorts/Client/src/client/Client.java" />
     <entry file="file://$PROJECT_DIR$/src/GameofSorts/MainTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1156">
@@ -526,7 +499,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameofSorts/Lista.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1462">
+        <state relative-caret-position="834">
           <caret line="96" column="4" selection-start-line="96" selection-start-column="4" selection-end-line="96" selection-end-column="4" />
         </state>
       </provider>
