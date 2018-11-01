@@ -34,7 +34,7 @@ public class Ventana extends JPanel implements ActionListener {
     static Graphics2D g2d;
     
     private Font font;
-    private String vida, layoutActual, lay, dragonStarts, nombre,n, edad,resistencia, clase, padre, velocidad;
+    private String vida, layoutActual, lay, nombre, edad,resistencia, clase, velocidad;
     static int Vidas;
     
     
@@ -54,7 +54,7 @@ public class Ventana extends JPanel implements ActionListener {
         
         oleada = creador.newOleada();        
               
-        lay = "al";
+        lay = "aleatorio";
         Vidas = 3;
         font = new Font("Monospaced", Font.TYPE1_FONT,25); // Características de la letra
         vida = "Vidas: " + Vidas;
@@ -111,13 +111,13 @@ public class Ventana extends JPanel implements ActionListener {
         g2d.setColor(Color.black);
         g2d.setFont(font);
         g2d.drawString(vida, 1100, 100);
-        g2d.drawString(layoutActual, 1100, 250);
+        g2d.drawString(layoutActual, 1080, 250);
         g2d.drawString(nombre, 1050, 390);
         g2d.drawString(velocidad, 1050, 420);
         g2d.drawString(edad, 1050, 450);
         g2d.drawString(resistencia, 1050, 480);
         g2d.drawString(clase, 1050, 510);
-        g2d.drawString(padre, 1050, 540);
+        //g2d.drawString(padre, 1050, 540);
         
         
         g.dispose();
@@ -169,28 +169,35 @@ public class Ventana extends JPanel implements ActionListener {
                 Fuego l = fuego.get(li);
                 if(l.getLimites().intersects(temp.getBounds()) && l.isVisible() && temp.isVisible()){
                     oleada.print();
-                   
-                        temp.setVisible(false);
-                        oleada.destroyEnemy(temp.getName());
-                        l.setVisible(false);
-                        //String ubicacionXML = creador.oleadaToXML(oleada);
-                        
+                        if (temp.getResistance() == 1){
+                            temp.setVisible(false);
+                            oleada.destroyEnemy(temp.getName());
+                            l.setVisible(false);
+                            //String ubicacionXML = creador.oleadaToXML(oleada);
+                        }
                         if (oleada.getHead() == null) {
                             System.out.println("Empty");
                             levelUp();
                             oleada = creador.newOleada();
-                            draw(oleada);
+                            //draw(oleada);
                             break;
                         } else {
-                           reorganice(oleada); 
+                            int i = temp.getResistance();
+                            temp.setResistance(i - 1);
+                            l.setVisible(false);
+                            if (temp.getResistance()== 0)
+                                reorganice(oleada); 
                         }
                         
                         
                         //Enviar servidor ubicacionXML
                     
-                    
+                   
                 }
+                
+                               
             }
+        
         temp = temp.getNext();
         }
                 
@@ -208,7 +215,6 @@ public class Ventana extends JPanel implements ActionListener {
          * 
          */
         
-        
         vida = "Vidas: " + Vidas; // Actualiza las vidas en pantalla
         layoutActual = lay; // Actualizacion de posición de dragones
         
@@ -217,7 +223,7 @@ public class Ventana extends JPanel implements ActionListener {
         edad = "Edad: " + oleada.getHead().getAge();
         resistencia = "Resistencia: " + oleada.getHead().getResistance();
         clase = "Clase: " + oleada.getHead().getClassType();
-        padre = "Padre: " + oleada.getHead().getPadre();
+        //padre = "Padre: " + oleada.getHead();
         
         repaint();
     }
@@ -278,7 +284,7 @@ public class Ventana extends JPanel implements ActionListener {
                 System.out.println("5: " + i);
                 avlTree = creador.turnToAVLTree(oleada);
                 drawTree(avlTree.getRoot());
-                lay = "AVLTree";
+                lay = "AVL Tree";
                 break;*/
         }
         numOrden+=1;
