@@ -273,12 +273,13 @@ public class CreadorDeOleadas {
      * @param oleada - lista
      * @return String xml
      */
-    public String oleadaToXML(Lista oleada){
+    
+    public String oleadaToXML(Dragon dragon){
         String ubicacion = "./oleada.xml";
         try{
             FileOutputStream fos = new FileOutputStream(new File(ubicacion));
             XMLEncoder encoder = new XMLEncoder(fos);
-            encoder.writeObject(oleada);
+            encoder.writeObject(dragon);
             encoder.close();
             fos.close();
         }
@@ -293,20 +294,21 @@ public class CreadorDeOleadas {
      * @param ubicacion - String
      * @return oleada
      */
-    public Lista XMLToOleada(String ubicacion){
+    public Dragon XMLToOleada(String ubicacion){
         
+    	Dragon dragon = null;
+    	
         try{
             FileInputStream fis = new FileInputStream(new File(ubicacion));
             XMLDecoder decoder = new XMLDecoder(fis);
-            
-            Lista oleada = (Lista) decoder.readObject();
+            dragon = (Dragon) decoder.readObject();
             decoder.close();
             fis.close();
         }
         catch (IOException ex){
             ex.printStackTrace();
         }
-        return oleada;
+        return dragon;
     }
     
     /**
@@ -343,6 +345,35 @@ public class CreadorDeOleadas {
         }
         return Lord;
     }
+    
+    /**
+    public selectionSort(Lista oleada) {
+    	
+    	Lista lista = new Lista();
+    	
+    	Dragon current = oleada.getHead();
+    	Dragon current2 =oleada.getHead().getNext();
+    	
+    	while (current != null) {
+    		
+    		current = current.getNext();
+    		
+    		while (current2 != null) {
+    			
+    			if (current.getValue() > current2.getValue()) {
+    				current = current2.getNext();
+    				current2 - 1.getNext() = current:
+    			}
+    			
+    		}
+    		
+    	}
+  
+    	  
+    }*/
+    
+    
+    
     
     /**
      * 

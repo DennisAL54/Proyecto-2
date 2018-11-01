@@ -27,6 +27,7 @@ public class Ventana extends JPanel implements ActionListener {
     private Image image;
     private Timer timer;
     private CaballeroMedieval caballeroMedieval;
+    public static Dragon lastDead;
     private Layout layout;
     private AVLTree avlTree = new AVLTree();
     private BinaryTree binary = new BinaryTree();
@@ -171,9 +172,10 @@ public class Ventana extends JPanel implements ActionListener {
                     oleada.print();
                         if (temp.getResistance() == 1){
                             temp.setVisible(false);
+                            this.lastDead = temp;
                             oleada.destroyEnemy(temp.getName());
                             l.setVisible(false);
-                            //String ubicacionXML = creador.oleadaToXML(oleada);
+                            String ubicacionXML = creador.oleadaToXML(temp);
                         }
                         if (oleada.getHead() == null) {
                             System.out.println("Empty");
