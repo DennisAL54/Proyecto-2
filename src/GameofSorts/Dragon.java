@@ -218,6 +218,10 @@ public class Dragon {
         this.setX((int) x);
     }
     
+    
+    
+    
+    
     /**
      * Acciones de movimiento de los dragones  
      */

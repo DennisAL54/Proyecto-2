@@ -149,9 +149,9 @@ public class AVLTree {
         /* 2. Update height of this ancestor BNode */
         node.setHeight(1 + max(height(node.getLeft()), height(node.getRight())));
 
-		/* 3. Get the balance factor of this ancestor
-			BNode to check whether this BNode became
-			unbalanced */
+	/* 3. Get the balance factor of this ancestor
+            BNode to check whether this BNode became
+            unbalanced */
         int balance = getBalance(node);
 
         // If this BNode becomes unbalanced, then there
@@ -198,6 +198,25 @@ public class AVLTree {
             preOrderAux(node.getLeft());
             preOrderAux(node.getRight());
         }
+    }
+    
+    /**
+     * Genera las coordenadas del arbol
+     */
+    public void generateCoordsTree(){
+        int x = 900;
+        int y = 285;
+        
+        Dragon d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12,d13,d14,d15; 
+        d1 = this.getRoot();
+        d1.setX(x); d1.setY(y);
+        d2 = d1.getLeft();                                                                                                                                                      d3 = d1.getRight();
+        d2.setX(x+80); d2.setY(y+160);                                                                                                                                          d3.setX(x+80); d3.setY(y-160);
+        d4 = d2.getLeft();                  d5 = d2.getRight();                                                                                                                 d6 = d3.getLeft();                      d7 = d3.getRight();
+        d4.setX(x+160); d4.setY(y+240);     d5.setX(x+160); d5.setY(y+80);                                                                                                      d6.setX(x+160); d6.setY(y-80);          d7.setX(x+160); d7.setY(y-240);
+        d8 = d4.getLeft();                  d9 = d4.getRight();                 d10 = d5.getLeft();                     d11 = d5.getRight();                                    d12 = d6.getLeft();                     d13 = d6.getRight();                    d14 = d7.getLeft();                     d15 = d7.getRight();
+        d8.setX(x+240); d8.setY(y+285);     d9.setX(x+240); d9.setY(y+200);     d10.setX(x+240); d10.setY(y+120);       d11.setX(x+240); d11.setY(y+40);                        d12.setX(x+240); d12.setY(y-40);        d13.setX(x+240); d13.setY(y-165);       d14.setX(x+240); d14.setY(y-200);       d15.setX(x+240); d15.setY(y-280);
+        
     }
 
 }

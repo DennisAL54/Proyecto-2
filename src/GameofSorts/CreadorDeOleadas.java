@@ -237,6 +237,8 @@ public class CreadorDeOleadas {
             tree.setRoot(tree.insert(temp));
             temp = temp.getNext();
         }
+        //Se generan las coordenadas
+        tree.generateCoordsTree();
         //Retorna el arbol
         return tree;
     }
@@ -255,6 +257,9 @@ public class CreadorDeOleadas {
             temp.setRight(temp.getHijo2());
             temp = temp.getNext();
         }
+        //Se generan las coordenadas
+        binaryTree.generateCoordsTree();
+        //Retorna el arbol
         return binaryTree;
     }
     

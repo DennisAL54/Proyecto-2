@@ -1,4 +1,4 @@
-package Game;
+package GameofSorts;
 
 
 /**
@@ -74,7 +74,15 @@ public class MainTest {
         return cantDragones;
     }
 
-    public static void setDragones(int cantDragones) {
+    public static void setCantDragones(int cantDragones) {
         MainTest.cantDragones = cantDragones;
     }
+   
+    
+    public void levelUp(){
+        this.setNivel(this.getNivel() + 1);
+        this.setCantDragones((int)(this.getCantDragones() + (this.getCantDragones()*0.2)));
+    }
+    
+    
 }
