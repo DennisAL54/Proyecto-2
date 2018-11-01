@@ -40,6 +40,29 @@ public class Lista {
     public void setSize(int size) {
         this.size = size;
     }
+    public Dragon getPosition(int pos){//Obtiene la posicion del dragon en la lista (como un index en un array)
+        if(pos <0 && pos >=size){
+            return null;
+        }
+        Dragon temp = head;
+        int i = 0;
+        while(i < pos){
+            temp = temp.getNext();
+        }
+        return temp;
+    }
+    public void setPosition(int pos, Dragon dragon){//Asigna la posicion del dragon
+        if(pos < 0 && pos >= size){
+            System.out.println("No valido");
+        }
+        Dragon temp = head;
+        int i = 0;
+        while(i < pos-1){
+            this.head = head.getNext();
+        }
+        dragon.setNext(temp.getNext().getNext());
+        temp.setNext(dragon);
+    }
 
 
     /**
