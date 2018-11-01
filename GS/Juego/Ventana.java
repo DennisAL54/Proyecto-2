@@ -272,11 +272,13 @@ public class Ventana extends JPanel implements ActionListener {
                 System.out.println("4: " + i);
                 binary = creador.turnToBinaryTree(oleada);
                 drawTree(binary.getRoot());
+                lay = "Binary Tree";
                 break;*/
            /* default:
                 System.out.println("5: " + i);
                 avlTree = creador.turnToAVLTree(oleada);
                 drawTree(avlTree.getRoot());
+                lay = "AVLTree";
                 break;*/
         }
         numOrden+=1;
