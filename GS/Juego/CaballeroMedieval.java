@@ -29,7 +29,7 @@ public class CaballeroMedieval {
         fuego = new ArrayList();
     }
     
-    //Métodos setters y getters
+    //Métodos getters
     public int getX(){
         return x;
     }
