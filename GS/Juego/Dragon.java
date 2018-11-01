@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
  * @author Bryan
  */
 public class Dragon {
-    private Image image;
+    private Image image, image1,image2,image3;
     private int dx,dy,lanzarFuegoPosib;
     private final int Velocidad;
     private ArrayList lanzarFuego;
@@ -47,11 +47,11 @@ public class Dragon {
     public Dragon(String name, int rS, int age, int resistance, String classType){
         
         ImageIcon i = new ImageIcon(this.getClass().getResource("/images/dragon1.gif"));
-        image = i.getImage();
+        image1 = i.getImage();
         ImageIcon ii = new ImageIcon(this.getClass().getResource("/images/dragon2.gif"));
-        image = ii.getImage();
+        image2 = ii.getImage();
         ImageIcon iii = new ImageIcon(this.getClass().getResource("/images/dragon3.gif"));
-        image = iii.getImage();
+        image3 = iii.getImage();
         
         
         this.x = x;
@@ -88,7 +88,19 @@ public class Dragon {
         return Velocidad;
     }    
     public Image getImage(){
-        return image;
+        if (classType == "Comandante"){
+            image = image3;
+            return image;
+        }
+        if (classType == "Capitan"){
+            image = image1;
+            return image;
+        }
+        if (classType == "Infante"){
+            image = image2;
+            return image;
+        }
+        return null;
      }
         
         
@@ -244,8 +256,8 @@ public class Dragon {
         if((y>0 && dy<0) || (y<370 && dy>0)) // Límites de la pantalla en x
             y += dy;
         
-        //if(random.nextInt()% lanzarFuegoPosib == 1 && x > 0) // fuego dragones
-          //  lanzarFuego.add(new Fuego(x, y));
+        if(random.nextInt()% lanzarFuegoPosib == 1 && x > 0) // fuego dragones
+            lanzarFuego.add(new Fuego(x, y));
     }
     /**
      * Arreglo en donde se crean los proyectiles 
