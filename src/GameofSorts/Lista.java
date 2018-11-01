@@ -56,10 +56,11 @@ public class Lista {
         }
         Dragon temp = head;
         int i = 0;
-        while(i < pos){
+        while(i < pos-1){
             this.head = head.getNext();
         }
-        this.head = dragon;
+        dragon.setNext(temp.getNext().getNext();
+        temp.setnext(dragon);
     }
 
 
