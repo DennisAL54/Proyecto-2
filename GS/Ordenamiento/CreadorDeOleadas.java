@@ -273,7 +273,6 @@ public class CreadorDeOleadas {
      * @param oleada - lista
      * @return String xml
      */
-    
     public String oleadaToXML(Dragon dragon){
         String ubicacion = "./oleada.xml";
         try{
@@ -312,9 +311,9 @@ public class CreadorDeOleadas {
     }
     
     /**
-     * 
+     * Acomoda la oleada por el algoritmo de Selection Sort.
      * @param lista
-     * @return 
+     * @return oleada ordenada
      */
     public Lista selectionSort(Lista lista){
         Lista Lord = new Lista();
@@ -346,39 +345,12 @@ public class CreadorDeOleadas {
         return Lord;
     }
     
-    /**
-    public selectionSort(Lista oleada) {
-    	
-    	Lista lista = new Lista();
-    	
-    	Dragon current = oleada.getHead();
-    	Dragon current2 =oleada.getHead().getNext();
-    	
-    	while (current != null) {
-    		
-    		current = current.getNext();
-    		
-    		while (current2 != null) {
-    			
-    			if (current.getValue() > current2.getValue()) {
-    				current = current2.getNext();
-    				current2 - 1.getNext() = current:
-    			}
-    			
-    		}
-    		
-    	}
-  
-    	  
-    }*/
-    
-    
     
     
     /**
-     * 
+     * Acomoda la oleada por el algoritmo de insertion sort.
      * @param head
-     * @return 
+     * @return oleada ordenada
      */
     public Dragon insertionSort(Dragon head){
         Lista List = new Lista();
@@ -407,9 +379,9 @@ public class CreadorDeOleadas {
     }
     
     /**
-     * 
+     * Ordena la lista por el algoritmo de quickSort.
      * @param lista
-     * @return 
+     * @return oleada ordenada
      */
     public Lista quickSort(Lista lista){
         return null;
