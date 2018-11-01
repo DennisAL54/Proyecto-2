@@ -85,16 +85,9 @@ public class Ventana extends JPanel implements ActionListener {
         // draw caballeroMedieval
         g2d.drawImage(caballeroMedieval.getImage(), caballeroMedieval.getX(), caballeroMedieval.getY(), this);
         
+        // Llamada para dibujar la oleada de Dragones
         draw(oleada);
-        /*
-        // draw Dragones
-        Dragon temp = oleada.getHead();
-        while (temp != null){
-            g2d.drawImage(temp.getImage(), temp.getX(),temp.getY(),this);
-            temp = temp.getNext();
-        }
-        */
-            
+                    
         // draw Fuego
         ArrayList<Fuego> fuego = caballeroMedieval.getfuego();
         for(int i = 0; i < fuego.size(); i++){
@@ -118,8 +111,6 @@ public class Ventana extends JPanel implements ActionListener {
         g2d.drawString(edad, 1050, 450);
         g2d.drawString(resistencia, 1050, 480);
         g2d.drawString(clase, 1050, 510);
-        //g2d.drawString(padre, 1050, 540);
-        
         
         g.dispose();
     }
@@ -151,18 +142,18 @@ public class Ventana extends JPanel implements ActionListener {
      */
     public void actionPerformed(ActionEvent e){
         ArrayList<Fuego> fuego = caballeroMedieval.getfuego();
-        // Updates
+        // Updates, acciones del caballero medieval
         caballeroMedieval.logic();     
-        // Dragon
-        Dragon temp = oleada.getHead();
-        while (temp != null){
-            temp.logic();
+        // Acciones del Dragon
+        Dragon temp = oleada.getHead(); // Temporal con el primer elemento de la lista de la oleada
+        while (temp != null){ // La lista tiene elementos, no está vacía
+            temp.logic(); // Llama al metodo que realiza el movimineto de los Dragones 
             
-            if(temp.getX() == -80)
-                    if (temp.isVisible() == true)
-                        Vidas -= 1;
-                        if (Vidas == 0)
-                            gameOver(0);
+            if(temp.getX() == -80) // Si el dragon sobrepasa al caballeroMedieval
+                    if (temp.isVisible() == true) // Verifíca que el elemento existe en pantalla 
+                        Vidas -= 1; // Resta una vida al caballeroMedieval
+                        if (Vidas == 0) // Si el caballeroMedieval no tiene vidas 
+                            gameOver(0); // LLamada al metodo que termina el juego
             
             
             //Hit Fuego
@@ -170,53 +161,43 @@ public class Ventana extends JPanel implements ActionListener {
                 Fuego l = fuego.get(li);
                 if(l.getLimites().intersects(temp.getBounds()) && l.isVisible() && temp.isVisible()){
                     oleada.print();
-                        if (temp.getResistance() == 1){
-                            temp.setVisible(false);
-                            this.lastDead = temp;
-                            oleada.destroyEnemy(temp.getName());
-                            l.setVisible(false);
-                            String ubicacionXML = creador.oleadaToXML(temp);
+                        if (temp.getResistance() == 1){ // Si el Dragon se queda sin resistencia 
+                            temp.setVisible(false); // El Dragon no es visible 
+                            this.lastDead = temp; // Último Dragon eliminado
+                            oleada.destroyEnemy(temp.getName()); // Elimina al Dragon de la lista
+                            l.setVisible(false); // El disparo de Fuego desaparece 
+                            String ubicacionXML = creador.oleadaToXML(temp); // Escribe la información en un XML 
                         }
-                        if (oleada.getHead() == null) {
+                        if (oleada.getHead() == null) { // Si la lista esta vacía 
                             System.out.println("Empty");
-                            levelUp();
-                            oleada = creador.newOleada();
+                            levelUp(); // Aumenta el nivel e incrementa la cantidad de Dragones por oleada 
+                            oleada = creador.newOleada(); // Crea una nueva oleada
                             //draw(oleada);
                             break;
                         } else {
-                            int i = temp.getResistance();
-                            temp.setResistance(i - 1);
-                            l.setVisible(false);
-                            if (temp.getResistance()== 0)
-                                reorganice(oleada); 
+                            int i = temp.getResistance(); // Obtiene el valor de la resistencia al que golpea 
+                            temp.setResistance(i - 1); // Resta una vida a la resistencia del Dragon 
+                            l.setVisible(false); //El disparo de Fuego desaparece
+                            if (temp.getResistance()== 0) // Si el dragon se queda sin resistencia
+                                reorganice(oleada); // Cambia el ordenamiento de la oleada
                         }
-                        
-                        
-                        //Enviar servidor ubicacionXML
-                    
-                   
+                        //Enviar servidor ubicacionXML 
                 }
-                
-                               
+                 
             }
-        
-        temp = temp.getNext();
+        temp = temp.getNext(); // cambia el valor temporal al siguiente en la lista
         }
-                
+        // Disparos de Fuego
         for(int i = 0; i < fuego.size(); i++){
             Fuego l = fuego.get(i);
-            if(l.isVisible())
-                l.update();
+            if(l.isVisible()) // Hace visible el disparo
+                l.update(); // Llamada al método que mueve el Fuego
             else
-                fuego.remove(i);
+                fuego.remove(i); // Demueve el disparo
         }
         
-        /**
-         * 
-         * caracteristicas dragon
-         * 
-         */
-        
+         
+        // Caracteristícas dragon
         vida = "Vidas: " + Vidas; // Actualiza las vidas en pantalla
         layoutActual = lay; // Actualizacion de posición de dragones
         
@@ -225,16 +206,8 @@ public class Ventana extends JPanel implements ActionListener {
         edad = "Edad: " + oleada.getHead().getAge();
         resistencia = "Resistencia: " + oleada.getHead().getResistance();
         clase = "Clase: " + oleada.getHead().getClassType();
-        //padre = "Padre: " + oleada.getHead();
-        
+      
         repaint();
-    }
-    
-    public void mousePressed(){
-        
-    }
-    public void mouseReleased(){
-
     }
 
     private class Listener extends KeyAdapter{
@@ -248,27 +221,30 @@ public class Ventana extends JPanel implements ActionListener {
             caballeroMedieval.keyReleased(e);       
         }
     }
-    
+    /**
+     * Método de reorganizacion de los Dragones 
+     * @param oleada 
+     */
     private void reorganice(Lista oleada){
         System.out.println(oleada.getHead());
         int i = (numOrden + 3) % 3;
         
         switch (i) {
-            case 1:
+            case 1: // Cambia el ordenamiento por Selection Sort
                 System.out.println("1: " + i);
                 //oleada = creador.selectionSort(oleada);
                 oleada = creador.recreateOleada(oleada);
                 draw(oleada);
                 lay = "Selection Sort";
                 break;
-            case 2:
+            case 2: // Cambia el ordenamiento por Insertion Sort
                 System.out.println("2: " + i);
                 //oleada = creador.insertionSort(oleada);
                 oleada = creador.recreateOleada(oleada);
                 draw(oleada);
                 lay = "Insertion Sort";
                 break;
-            //case 3:
+            //case 3: // Cambia el ordenamiento por Quick Sort
             default:
                 System.out.println("3: " + i);
                 //oleada = creador.quickSort(oleada);
@@ -276,13 +252,13 @@ public class Ventana extends JPanel implements ActionListener {
                 draw(oleada);
                 lay = "Quick Sort";
                 break;
-            /*case 4:
+            /*case 4: // Cambia el ordenamiento por Binary Tree
                 System.out.println("4: " + i);
                 binary = creador.turnToBinaryTree(oleada);
                 drawTree(binary.getRoot());
                 lay = "Binary Tree";
                 break;*/
-           /* default:
+           /* default: // Cambia el ordenamiento por AVLTree
                 System.out.println("5: " + i);
                 avlTree = creador.turnToAVLTree(oleada);
                 drawTree(avlTree.getRoot());
@@ -293,7 +269,9 @@ public class Ventana extends JPanel implements ActionListener {
         System.out.println("NumOrden: " + numOrden);
                     
     }
-    
+    /**
+     * Aumenta el nivel y la cantidad de Dragones 
+     */
     public void levelUp(){
         this.nivel = this.nivel + 1;
         cantDragones = (int)(this.cantDragones + (this.cantDragones*0.2));
