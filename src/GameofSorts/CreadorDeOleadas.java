@@ -9,7 +9,7 @@ import java.io.*;
  *
  * @author Rubén Salas
  * @since 18/10/18
- * @version 1.3
+ * @version 1.4
  */
 public class CreadorDeOleadas {
 
@@ -224,7 +224,7 @@ public class CreadorDeOleadas {
     }
 
     /**
-     * Vuelve una lista a un arbol AVL
+     * Vuelve una lista a un arbol AVL.
      * @param oleada - lista
      * @return arbol AVL
      */
@@ -242,9 +242,9 @@ public class CreadorDeOleadas {
     }
 
     /**
-     * 
-     * @param oleada
-     * @return 
+     * Vuelve una lista a aun arbol Binario.
+     * @param oleada - lista
+     * @return arbol Binario
      */
     public BinaryTree turnToBinaryTree(Lista oleada) {
         BinaryTree binaryTree = new BinaryTree();
@@ -259,9 +259,9 @@ public class CreadorDeOleadas {
     }
     
     /**
-     * 
-     * @param oleada
-     * @return 
+     * Convierte una oleada a un archivo XML
+     * @param oleada - lista
+     * @return String xml
      */
     public String oleadaToXML(Lista oleada){
         String ubicacion = "./oleada.xml";
@@ -279,9 +279,9 @@ public class CreadorDeOleadas {
     }
     
     /**
-     * 
-     * @param ubicacion
-     * @return 
+     * Convierte un archivo xml a una oleada.
+     * @param ubicacion - String
+     * @return oleada
      */
     public Lista XMLToOleada(String ubicacion){
         
