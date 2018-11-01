@@ -341,35 +341,25 @@ public class CreadorDeOleadas {
     
     /**
      * 
-     * @param head
+     * @paramhead
      * @return 
      */
-    public Dragon insertionSort(Dragon head){
-        Lista List = new Lista();
-        if(head == null){
-            return null;
-        }
-        Dragon dummy = new Dragon("w",0,0,0,"r");
-        Dragon prev = dummy;
-        Dragon temp = null;
-        Dragon curr = head;
-        while(curr != null){
-            temp = head.getNext();
-            while(prev.getNext() != null && prev.getNext().getRechargeSpeed() > curr.getRechargeSpeed()){
-                prev = prev.getNext();
+    public static Lista insertionSort(Lista lista){
+        Dragon temp;
+        for(int i = 1; i < lista.getSize(); i++){
+            for(int j =i; j>0; j--){
+                if(lista.getPosition(j-1).getRechargeSpeed() > lista.getPosition(j).getRechargeSpeed()){
+                    temp = lista.getPosition(j);
+                    lista.setPosition(j, lista.getPosition(j-1));
+                    lista.setPosition(j-1,temp);
+
+
+                }
             }
-            curr.setNext(prev.getNext());
-            prev.setNext(curr);
-            curr = temp;
-            prev = dummy;
-            
         }
-        List.add(dummy.getNext());
-        
-        return dummy.getNext();
-       
+        return lista;
+
     }
-    
     /**
      * 
      * @param lista
