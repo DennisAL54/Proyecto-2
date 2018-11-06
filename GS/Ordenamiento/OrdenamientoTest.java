@@ -13,12 +13,12 @@ public class OrdenamientoTest {
 
     @BeforeAll
     public void before(){
-        System.out.println();
+        System.out.println("Before");
     }
 
     @AfterAll
     public void after(){
-        System.out.println();
+        System.out.println("After");
     }
 
 }
