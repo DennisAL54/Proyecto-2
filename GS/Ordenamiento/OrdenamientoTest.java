@@ -2,6 +2,7 @@ package Ordenamiento;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import Juego.*;
 
 public class OrdenamientoTest {
 
@@ -20,5 +21,13 @@ public class OrdenamientoTest {
     public void after(){
         System.out.println("After");
     }
+    
+    @Test
+    public void testCreadorDeOleadas(){
+        System.out.println(newDragon()");
+        Dragon result = newDragon();
+        Dragon esperado = new Dragon();
+        asserEquals(esperado,dragon);
+    }    
 
 }
